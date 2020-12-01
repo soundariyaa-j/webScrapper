@@ -15,7 +15,7 @@ After successfull installation start the server with below command
   npm start
 ```
 
-##Invoke API 
+## Get Metadata of a Webpage
 
 Hit the api  http://${host}:${port}/metadata/page/getinfo with follwing request
 
