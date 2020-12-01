@@ -1,0 +1,50 @@
+{
+    "serverport":9010,
+    "ogpMetadataMapping":{
+        "og:title": {
+          "name": "title",
+          "attType": "string",
+          "gpath": "$('title').text()"
+        },
+        "og:type": {
+          "name": "type",
+          "attType": "string"
+        },
+        "og:url": {
+          "name": "url",
+          "attType": "string"
+        },
+        "og:description": {
+          "name": "description",
+          "attType": "string",
+          "gpath": "$('meta[name='description']').attr('content')"
+        },
+        "og:image": {
+          "name": "image",
+          "attType": "array",
+          "gpath": "$('img').attr('src')"
+        },
+        "og:audio": {
+          "name": "audio",
+          "attType": "array",
+          "gpath":"$('audio').attr('src')"
+        },
+        "og:locale": {
+          "name": "locale",
+          "attType": "string"
+        },
+        "og:site_name": {
+          "name": "siteNamme",
+          "attType": "string"
+        },
+        "og:video:url": {
+          "name": "video",
+          "attType": "array"
+        },
+        "og:video": {
+            "name": "video",
+            "attType": "array",
+            "gpath": "$('video').attr('src')"
+        }
+      }
+}

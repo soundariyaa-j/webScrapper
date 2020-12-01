@@ -1,0 +1,24 @@
+{
+  "name": "metadatascrapper",
+  "version": "1.0.0",
+  "description": "Scrap metadata from webpages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soundariyaa",
+  "license": "ISC",
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "config": "^3.3.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "got": "^11.8.0",
+    "joi": "^17.3.0",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  }
+}
