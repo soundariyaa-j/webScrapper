@@ -1,5 +1,15 @@
 {
     "serverport":9010,
+    "dynamoDBConfig":{
+      "region":"us-east-1",
+      "metadataTable":{
+        "tableName": "webpage_metadata"
+      },
+      "accessCountTable":{
+        "tableName": "webpage_count"
+      },
+      "cacheCount":2
+    },
     "ogpMetadataMapping":{
         "og:title": {
           "name": "title",
@@ -45,6 +55,14 @@
             "name": "video",
             "attType": "array",
             "gpath": "$('video').attr('src')"
+        },
+        "og:updated_time":{
+          "name":"updated_time",
+          "attType": "string"
+        },
+        "music:song":{
+          "name":"music",
+          "attType": "array"
         }
-      }
+    }
 }

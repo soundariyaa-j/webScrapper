@@ -8,6 +8,7 @@ class Routes{
      */
     static initializeConfigRoutes(router){
         router.post("/page/getinfo",requestController.processRequest);
+        router.post("/cacheCount/update",requestController.changeCacheCount);
     }
 }
 

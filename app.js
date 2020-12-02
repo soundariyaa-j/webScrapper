@@ -3,10 +3,11 @@ const config = require('config');
 const port = config.get('serverport');
 var cors = require('cors')
 const logger = require('./src/utils/logger');
+const cacheDAO = require('./src/utils/cacheDAO');
 
 var middleware = require('./src/middleware/middleware');
 var routes = require('./src/routes/appRoutes');
-
+const serverless = require('serverless-http');
 
 const app = express();
 app.use(cors())
@@ -17,9 +18,13 @@ routes.initializeConfigRoutes(router);
 
 app.listen(port, async () => {
     try {
-        logger.info(`Config app listening at http://localhost:${port}`) 
+        logger.info(`Application server listening at ${port}`) ;
+        cacheDAO.initilizeCache();
     } catch (error) {
         logger.error(error);
     }
 
 })
+
+//For serverless deployment
+module.exports.handler = serverless(app);

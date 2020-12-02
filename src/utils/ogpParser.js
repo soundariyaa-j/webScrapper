@@ -28,7 +28,7 @@ class OGPParser{
                         }else{
                             ogParameters[ogpAttr.name] = metaAttribs.content;
                         }
-                    } 
+                    }
                 }
                 if(ogParameters && Object.keys(ogParameters).length<0){
                     logger.info("Open Graph Params are not found in webpage");

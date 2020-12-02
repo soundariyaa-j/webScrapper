@@ -2,6 +2,7 @@ const httpService = require('../service/httpService');
 const ogpParser = require('../utils/ogpParser');
 const logger = require('../utils/logger');
 const Joi = require('joi');
+const cacheDAO = require('../utils/cacheDAO');
 
 class RequestController{
 
@@ -34,16 +35,39 @@ class RequestController{
      */
     static async processRequest(req,res){
         try {
-            logger.info("Fetch OGP Param for URL:- "+req.body.url)
-            await RequestController.validateRequest()
-            const response = await httpService.getHtmlPage(req.body.url);
-            const ogParameters = await ogpParser.parseData(response);
+            const webPageURL = req.body.url;
+            logger.info("Fetch OGP Param for URL:- "+webPageURL)
+            await RequestController.validateRequest();
+            var ogParameters = {};
+            if(cacheDAO.fetchValuefromCache(webPageURL) && cacheDAO.hasMetadata(webPageURL)){
+                logger.info("Resonse fetched from cache");
+                const cacheResponse = await cacheDAO.getMetadata(webPageURL);
+                ogParameters = JSON.parse(cacheResponse);
+            }else{
+                const response = await httpService.getHtmlPage(webPageURL);
+                ogParameters = await ogpParser.parseData(response);
+                cacheDAO.saveMetadata(req, ogParameters);
+            }
             res.send(ogParameters);
         } catch (error) {
             logger.error("Error in fetching HTML "+error);
             res.json({status: "FAIL",message:error.message}).status(400);
         }
     }
+
+    static async changeCacheCount(req, res){
+        try {
+            if(req.body.count){
+                cacheDAO.changeCacheCount(req.body.count);
+                res.send({status:"SUCCESS"});
+            }else{
+                res.send({message:"count is required"}).status(400);
+            }
+        } catch (error) {
+            logger.error("Error in updating cache count"+error);
+            res.json({status: "FAIL",message:error.message}).status(400);
+        }
+    } 
 }
 
 module.exports = RequestController;
