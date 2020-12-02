@@ -42,3 +42,15 @@ Response for above request will be similar as mentioned below
     ]
 }
 ```
+## Application Configuration
+
+Config file has the port and other configurations required for the application
+
+```
+{
+    serverport      : application server port
+    dynamoDBConfig  : table name
+    cacheCount      : If urls invoked these many times , it will be cached and fetched directly from cache
+    ogpMetadataMapping: response object mapping
+}
+```
