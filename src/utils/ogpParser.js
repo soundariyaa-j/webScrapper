@@ -10,9 +10,9 @@ class OGPParser{
      * If Open Graph Paarm is not present in webpage, get respective values from tag
      */
     static parseData(data){
-        const ogpMetadataMapping = config.get('ogpMetadataMapping');
         return new Promise((resolve,reject)=>{
             try {
+                const ogpMetadataMapping = config.get('ogpMetadataMapping');
                 const $ = cheerio.load(data); 
                 const metadata = $('meta');
                 var ogParameters = {};
@@ -20,21 +20,18 @@ class OGPParser{
                     let metaAttribs =  metadata[key] ? metadata[key].attribs : null;
                     if( metaAttribs && metaAttribs.property && ogpMetadataMapping[metaAttribs.property]){
                         let ogpAttr = ogpMetadataMapping[metaAttribs.property];
-                        if(ogpAttr.attType=== 'array'){
-                            if(!ogParameters[ogpAttr.name]){
-                                ogParameters[ogpAttr.name] = [];
-                            }
-                            ogParameters[ogpAttr.name].push(metaAttribs.content);
-                        }else{
-                            ogParameters[ogpAttr.name] = metaAttribs.content;
-                        }
+                        OGPParser.setValue(ogParameters,ogpAttr,metaAttribs.content);
                     }
                 }
-                if(ogParameters && Object.keys(ogParameters).length<0){
+                if(ogParameters && (Object.keys(ogParameters).length< 1)){
                     logger.info("Open Graph Params are not found in webpage");
-                    for(var ogpAttr of Object.keys(ogpMetadataMapping)){
+                    for(var key of Object.keys(ogpMetadataMapping)){
+                        let ogpAttr = ogpMetadataMapping[key];
                         if(ogpAttr.gpath){
-                            ogParameters[ogpAttr.name] =eval(ogpAttr.gpath);
+                            const value = eval(ogpAttr.gpath);
+                            if(value){
+                                OGPParser.setValue(ogParameters,ogpAttr, value);
+                            }
                         }
                     }
                 }
@@ -45,6 +42,17 @@ class OGPParser{
                 reject(error);
             }
         })
+    }
+
+    static setValue(ogParameters, ogpAttr, value){
+        if(ogpAttr.attType=== 'array'){
+            if(!ogParameters[ogpAttr.name]){
+                ogParameters[ogpAttr.name] = [];
+            }
+            ogParameters[ogpAttr.name].push(value);
+        }else{
+            ogParameters[ogpAttr.name] = value;
+        }
     }
 }
 

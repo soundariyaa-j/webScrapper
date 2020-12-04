@@ -3,11 +3,11 @@ const config = require('config');
 const port = config.get('serverport');
 var cors = require('cors')
 const logger = require('./src/utils/logger');
-const cacheDAO = require('./src/utils/cacheDAO');
+const cacheUtility = require('./src/utils/cacheUtility');
 
 var middleware = require('./src/middleware/middleware');
 var routes = require('./src/routes/appRoutes');
-const serverless = require('serverless-http');
+//const serverless = require('serverless-http');
 
 const app = express();
 app.use(cors())
@@ -19,7 +19,7 @@ routes.initializeConfigRoutes(router);
 app.listen(port, async () => {
     try {
         logger.info(`Application server listening at ${port}`) ;
-        cacheDAO.initilizeCache();
+        cacheUtility.initilizeCache();
     } catch (error) {
         logger.error(error);
     }
@@ -27,4 +27,4 @@ app.listen(port, async () => {
 })
 
 //For serverless deployment
-module.exports.handler = serverless(app);
+//module.exports.handler = serverless(app);

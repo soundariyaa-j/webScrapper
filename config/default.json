@@ -7,8 +7,11 @@
       },
       "accessCountTable":{
         "tableName": "webpage_count"
-      },
-      "cacheCount":2
+      }
+    },
+    "cacheConfig":{
+      "cacheCount":2,
+      "enableCache":true
     },
     "ogpMetadataMapping":{
         "og:title": {
@@ -27,7 +30,7 @@
         "og:description": {
           "name": "description",
           "attType": "string",
-          "gpath": "$('meta[name='description']').attr('content')"
+          "gpath": "$('meta[name=\"description\"]').attr('content')"
         },
         "og:image": {
           "name": "image",

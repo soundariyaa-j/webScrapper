@@ -1,0 +1,48 @@
+{
+    "validogpRequest":{
+        "url":"https://gaana.com/playlist/tanmay5709-gannacom",
+        "htmlResponse":"webpagewithogp.html",
+        "response":{
+            "siteNamme": "Gaana.com",
+            "type": "music.playlist",
+            "url": "https://gaana.com/playlist/tanmay5709-gannacom",
+            "title": "Playlist ganna .com on Gaana.com",
+            "description": "Listen to ganna .com by Gaana User. Also enjoy other Popular songs on your favourite music app Gaana.com",
+            "image": [
+                "https://a10.gaanacdn.com//images/playlists/47/4591047/4591047.jpg"
+            ],
+            "audio": [
+                "https://gaana.com/playlist/tanmay5709-gannacom"
+            ],
+            "music": [
+                "https://gaana.com/song/afgan-jalebi-ya-baba",
+                "https://gaana.com/song/main-hoon-hero-tera-salman-khan-version",
+                "https://gaana.com/song/selfie-le-le-re",
+                "https://gaana.com/song/baaton-ko-teri",
+                "https://gaana.com/song/tu-jo-mila",
+                "https://gaana.com/song/tutti-bole-wedding-di",
+                "https://gaana.com/song/banno",
+                "https://gaana.com/song/saware",
+                "https://gaana.com/song/zindagi-kuch-toh-bata-1",
+                "https://gaana.com/song/mere-humsafar-11"
+            ]
+        }
+    },
+    "withogpRequest":{
+        "url":"https://www.simplesite.com/",
+        "htmlResponse":"webpagewithoutogp.html",
+        "response":{
+            "title": "\n\tSimpleSite.com\n",
+            "description": "Fast and easy - the most popular online website builder in the world, with no ads and your own domain name. Try SimpleSite.com completely free now!",
+            "image": [
+                "/Images/FrontPage2017/Icons/globe.png"
+            ]
+        }
+    },
+    "withoutMetadata":{
+        "url":"https://randomsite.com",
+        "htmlResponse":"webpagewithoutmetadata.html",
+        "response":{}
+    }
+
+}
